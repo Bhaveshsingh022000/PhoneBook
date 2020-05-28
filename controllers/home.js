@@ -11,7 +11,7 @@ exports.getHomepage = (req, res, next) => {
             totalItem = num;
             return Contact.find({ user: req.session.user })
                 .skip((page - 1) * Items_per_Page)
-                .sort({name:1})
+                .sort({ name: 1 })
                 .limit(Items_per_Page)
         })
         .then(contacts => {
@@ -22,9 +22,9 @@ exports.getHomepage = (req, res, next) => {
                 currentPage: page,
                 hasNextPage: Items_per_Page * page < totalItem,
                 hasPreviousPage: page > 1,
-                nextPage: page+1,
-                previousPage : page - 1,
-                lastPage: Math.ceil(totalItem/Items_per_Page)
+                nextPage: page + 1,
+                previousPage: page - 1,
+                lastPage: Math.ceil(totalItem / Items_per_Page)
             });
         })
         .catch(err => {
@@ -135,4 +135,19 @@ exports.deleteContact = (req, res, next) => {
         .catch(err => {
             console.log(err);
         })
-}
+};
+
+exports.searchContacts = (req, res, next) => {
+    const query = req.params.query;
+    Contact.find({name:{"$regex":query,"$options":"i"}})
+    .then(result => {
+        // console.log(result);
+        res.status(200).json({
+            contacts: result
+        });
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+    
+};

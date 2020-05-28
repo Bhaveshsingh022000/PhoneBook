@@ -19,6 +19,6 @@ router.post('/editContact',isAuth,homeController.postEditContact);
 
 router.delete('/contact/:id',isAuth,homeController.deleteContact);
 
-// router.get('/contacts',homeController.getContacts);
+router.get('/searchContact/:query',homeController.searchContacts);
 
 module.exports = router;

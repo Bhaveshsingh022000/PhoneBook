@@ -131,14 +131,43 @@
             method: 'DELETE'
         })
             .then(res => {
-                location.reload();
-                console.log(res);
+                return res.json();
             })
             .catch(err => {
                 console.log(err);
             });
     }
 
+    function clearSearchHandler(){
+        var x = document.getElementsByClassName("searchRes")[0].childElementCount;
+        while(x!=0){
+            document.getElementsByClassName("searchRes")[0].removeChild(document.getElementsByClassName("searchRes")[0].lastChild);
+            x = x-1;
+        }
+    }
+
+    function searchHandler() {
+        clearSearchHandler();
+        var x = document.getElementById("search").value;
+        fetch('/searchContact/'+x,{
+            method:'GET'
+        })
+        .then(res =>{
+            return res.json();
+        })
+        .then(data =>{
+            var s = document.getElementsByClassName("searchRes")[0];
+            for(var i=0;i<data.contacts.length;i++){
+                var p = document.createElement("p");
+            p.innerText = data.contacts[i].name;
+            s.appendChild(p);
+            }
+            
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+    }
 </script>
 
 <body>
@@ -168,10 +197,13 @@
         </form>
     </div>
     <div class="main">
-        <form action="" method="post">
-            <input type="text" />
+        <form action="#" method="get">
+            <input type="text" id="search" oninput="searchHandler()" />
             <button type="submit">Search</button>
         </form>
+        <div class="searchRes">
+
+        </div>
 
         <div id="accordion">
             <% for(let c of contacts) {%>
@@ -180,7 +212,7 @@
                     <a class="card-link" data-toggle="collapse" href="#collapseOne<%=c._id%>">
                         <img src="/<%= c.imageUrl %>" alt="" srcset="" style="border-radius: 50%;" height="80px"
                             width="80px">
-                        <%= c.name %>
+                        <p style="text-transform: capitalize;"><%= c.name %></p>
                     </a>
                 </div>
                 <div id="collapseOne<%=c._id%>" class="collapse" data-parent="#accordion">

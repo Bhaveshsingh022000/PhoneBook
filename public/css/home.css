@@ -47,3 +47,10 @@
     background-color: green;
     color: white;
 }
+
+.searchRes{
+    height: 30vh;
+    width: 100%;
+    background-color: tomato;
+    z-index: 20;
+}
