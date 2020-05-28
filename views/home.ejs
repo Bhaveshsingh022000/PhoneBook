@@ -33,7 +33,9 @@
                     </div>
                     <div id="collapseOne<%=c._id%>" class="collapse" data-parent="#accordion">
                         <div class="card-body">
-                            <button type="button">
+                            <button type="button">Edit</button>
+                            <button type="button">Delete</button>
+                            <img src="/<%= c.imageUrl %>" alt="" srcset="">
                             <%= c.dateofbirth %>
                             <% for(let p of c.listphoneno) {%>
                                 <%= p%>

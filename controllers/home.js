@@ -23,13 +23,21 @@ exports.getAddContact = (req, res, next) => {
 
 exports.postAddContact = (req, res, next) => {
     const result = JSON.parse(req.body.data);
-    // console.log(result);
+    console.log(result);
+    const image = req.file;
+    
+    if(!image){
+        res.redirect('/addContact');
+    }
+    const imageUrl = image.path;
+    console.log(imageUrl);
     const contact = new Contact({
         name: result.name,
         listemail: result.email,
         dateofbirth: result.dob,
         listphoneno: result.phone,
-        user: req.session.user
+        user: req.session.user,
+        imageUrl: imageUrl
     });
     contact.save()
     .then(output => {
