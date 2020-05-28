@@ -23,7 +23,7 @@
             field.type = "number";
             x.appendChild(field);
         }
-        else{
+        else {
             var field = document.createElement("input");
             var x = document.getElementById('emailField');
             field.type = "email";
@@ -32,15 +32,15 @@
 
     }
     function removeFields(c) {
-        if(c==1){
+        if (c == 1) {
             var x = document.getElementById('phoneField');
-        x.removeChild(x.lastChild);
+            x.removeChild(x.lastChild);
         }
-        else{
+        else {
             var x = document.getElementById('emailField');
-        x.removeChild(x.lastChild);
+            x.removeChild(x.lastChild);
         }
-        
+
     }
 
     function addcontact() {
@@ -54,95 +54,95 @@
             arr1.push(x.elements[3 + i].value);
         }
         console.log(x.elements[3].value);
-        arr2.push(x.elements[5+countp].value);
-        for(var i=0;i<counte;i++){
-            arr2.push(x.elements[5+countp+i+1].value);
+        arr2.push(x.elements[5 + countp].value);
+        for (var i = 0; i < counte; i++) {
+            arr2.push(x.elements[5 + countp + i + 1].value);
         }
 
         var result = {
-            name:x.elements[0].value,
-            dob:x.elements[1].value,
-            phone:arr1,
-            email:arr2
+            name: x.elements[0].value,
+            dob: x.elements[1].value,
+            phone: arr1,
+            email: arr2
         };
 
-       document.getElementById('s1').value = JSON.stringify(result);
+        document.getElementById('s1').value = JSON.stringify(result);
         document.getElementById("sendForm").submit();
     }
 
-    function showEditHandler(x){
+    function showEditHandler(x) {
         console.log(x);
         var obj;
         document.getElementsByClassName('backdrop')[0].style.display = "block";
         document.getElementsByClassName('editForm')[0].style.display = "block";
-       fetch('/editContact/'+x,{
-           method:'get'
-       })
-       .then(result => {
-        return result.json();
-       })
-       .then(data =>{
+        fetch('/editContact/' + x, {
+            method: 'get'
+        })
+            .then(result => {
+                return result.json();
+            })
+            .then(data => {
 
-           document.forms.myForm.name.value = data.contact.name;
-           document.forms.myForm.date.value = data.contact.dateofbirth;
-           document.forms.myForm.phone.value = data.contact.listphoneno[0];
-           if(data.contact.listphoneno.length > 1){
-               for(var i=1;i<data.contact.listphoneno.length;i++){
-                   document.getElementById("morePhoneField").click();
-                   document.forms.myForm.elements[2+i].value = data.contact.listphoneno[i];
-                   console.log("field");
-               }
-           }
-           document.forms.myForm.email.value = data.contact.listemail[0];
-           if(data.contact.listemail.length > 1){
-               var c = document.getElementById("phoneField").childElementCount;
-            for(var i=1;i<data.contact.listemail.length;i++){
-                   document.getElementById("moreEmailField").click();
-                   document.forms.myForm.elements[5+c+i].value = data.contact.listemail[i];
-               }
-           }
-           document.getElementById("s2").value = data.contact._id;
-           console.log(data);
-       })
-       .catch(err =>{
-           console.log(err);
-       });
-       
-    }
-function hidebackdrop(){
-    var count = document.getElementById("phoneField").childElementCount;
-    while(count!=0){
-        document.getElementById("phoneField").removeChild(document.getElementById("phoneField").lastChild);
-        count = count-1;
-    }
-    
-    var count2 = document.getElementById("emailField").childElementCount;
-    while(count2!=0){
-        document.getElementById("emailField").removeChild(document.getElementById("emailField").lastChild);
-        count2 = count2-1;
-    }
-    document.getElementsByClassName("backdrop")[0].style.display = "none";
-    document.getElementsByClassName("editForm")[0].style.display = "none";
+                document.forms.myForm.name.value = data.contact.name;
+                document.forms.myForm.date.value = data.contact.dateofbirth;
+                document.forms.myForm.phone.value = data.contact.listphoneno[0];
+                if (data.contact.listphoneno.length > 1) {
+                    for (var i = 1; i < data.contact.listphoneno.length; i++) {
+                        document.getElementById("morePhoneField").click();
+                        document.forms.myForm.elements[2 + i].value = data.contact.listphoneno[i];
+                        console.log("field");
+                    }
+                }
+                document.forms.myForm.email.value = data.contact.listemail[0];
+                if (data.contact.listemail.length > 1) {
+                    var c = document.getElementById("phoneField").childElementCount;
+                    for (var i = 1; i < data.contact.listemail.length; i++) {
+                        document.getElementById("moreEmailField").click();
+                        document.forms.myForm.elements[5 + c + i].value = data.contact.listemail[i];
+                    }
+                }
+                document.getElementById("s2").value = data.contact._id;
+                console.log(data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
 
-}
+    }
+    function hidebackdrop() {
+        var count = document.getElementById("phoneField").childElementCount;
+        while (count != 0) {
+            document.getElementById("phoneField").removeChild(document.getElementById("phoneField").lastChild);
+            count = count - 1;
+        }
 
-function deleteHandler(x){
-    fetch('/contact/'+x,{
-        method:'DELETE'
-    })
-    .then(res=>{
-        location.reload();
-        console.log(res);
-    })
-    .catch(err =>{
-        console.log(err);
-    });
-}
+        var count2 = document.getElementById("emailField").childElementCount;
+        while (count2 != 0) {
+            document.getElementById("emailField").removeChild(document.getElementById("emailField").lastChild);
+            count2 = count2 - 1;
+        }
+        document.getElementsByClassName("backdrop")[0].style.display = "none";
+        document.getElementsByClassName("editForm")[0].style.display = "none";
+
+    }
+
+    function deleteHandler(x) {
+        fetch('/contact/' + x, {
+            method: 'DELETE'
+        })
+            .then(res => {
+                location.reload();
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 
 </script>
 
 <body>
-<div class="backdrop" onclick="hidebackdrop()"></div>
+    <div class="backdrop" onclick="hidebackdrop()"></div>
     <%- include('./includes/navigation.ejs') %>
     <div class="editForm">
         <form name="myForm" id="addForm" action="#" method="GET">
@@ -160,7 +160,7 @@ function deleteHandler(x){
             <button type="button" onclick="removeFields(2)">-</button>
             <button type="button" onclick="addcontact()">dd</button>
         </form>
-    
+
         <form id="sendForm" action="/editContact" method="post" enctype="multipart/form-data">
             <input type="file" name="image" id="image">
             <input type="hidden" id="s1" name="data" />
@@ -172,30 +172,48 @@ function deleteHandler(x){
             <input type="text" />
             <button type="submit">Search</button>
         </form>
-        
-            <div id="accordion">
-                <% for(let c of contacts) {%>
-                <div class="card">
-                    <div class="card-header">
-                        <a class="card-link" data-toggle="collapse" href="#collapseOne<%=c._id%>">
-                            <img src="/<%= c.imageUrl %>" alt="" srcset="" style="border-radius: 50%;" height="80px" width="80px"> 
-                            <%= c.name %>
-                        </a>
-                    </div>
-                    <div id="collapseOne<%=c._id%>" class="collapse" data-parent="#accordion">
-                        <div class="card-body">
-                            <button type="button" onclick='showEditHandler("<%=c._id%>")'>Edit</button>
-                            <button type="button" onclick='deleteHandler("<%=c._id%>")'>Delete</button>
-                            
-                            <%= c.dateofbirth %>
-                            <% for(let p of c.listphoneno) {%>
-                                <%= p%>
-                                <% } %>
-                        </div>
+
+        <div id="accordion">
+            <% for(let c of contacts) {%>
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseOne<%=c._id%>">
+                        <img src="/<%= c.imageUrl %>" alt="" srcset="" style="border-radius: 50%;" height="80px"
+                            width="80px">
+                        <%= c.name %>
+                    </a>
+                </div>
+                <div id="collapseOne<%=c._id%>" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <button type="button" onclick='showEditHandler("<%=c._id%>")'>Edit</button>
+                        <button type="button" onclick='deleteHandler("<%=c._id%>")'>Delete</button>
+
+                        <%= c.dateofbirth %>
+                        <% for(let p of c.listphoneno) {%>
+                        <%= p%>
+                        <% } %>
                     </div>
                 </div>
-                <% }%>
             </div>
-        
+            <% }%>
+        </div>
+
+        <section class="pagination">
+            <% if(currentPage !== 1 && previousPage !==1) {%>
+            <a href="/home/?page=1">1</a>
+            <%}%>
+            <% if(hasPreviousPage) {%>
+            <a href="/home/?page=<%= previousPage %>"><%= previousPage %></a>
+            <%}%>
+                <a href="/home/?page=<%= currentPage %>" class="active"><%= currentPage%></a>
+
+            <% if(hasNextPage) {%>
+            <a href="/home/?page=<%= nextPage %>"><%= nextPage %></a>
+            <%}%>
+            <% if(lastPage !== currentPage && nextPage !== lastPage) {%>
+            <a href="/home/?page=<%= lastPage %>"><%= lastPage %></a>
+            <%}%>    
+        </section>
+
     </div>
 </body>
