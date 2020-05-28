@@ -11,6 +11,7 @@ exports.getHomepage = (req, res, next) => {
             totalItem = num;
             return Contact.find({ user: req.session.user })
                 .skip((page - 1) * Items_per_Page)
+                .sort({name:1})
                 .limit(Items_per_Page)
         })
         .then(contacts => {
