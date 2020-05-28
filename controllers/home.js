@@ -48,3 +48,72 @@ exports.postAddContact = (req, res, next) => {
     })
 };
 
+exports.getEditContact = (req,res,next)=>{
+    const id = req.params.id;
+    // console.log(id);
+    Contact.findById(id)
+    .then(result => {
+        res.status(201).json({
+            message: 'Contact fetched',
+            contact: result
+        })
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+};
+
+exports.postEditContact = (req, res, next)=>{
+    const result = JSON.parse(req.body.data);
+    const id = req.body.id;
+    const image = req.file;
+    if(!image){
+        Contact.findById(id)
+        .then(contact =>{
+            contact.name = result.name;
+            contact.listemail = result.email;
+            contact.listphoneno = result.phone;
+            contact.dateofbirth = result.dob;
+            return contact.save();
+        })
+        .then(result =>{
+            console.log("contact updated");
+            res.redirect('/home');
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+    }
+    else{
+        Contact.findById(id)
+        .then(contact =>{
+            contact.name = result.name;
+            contact.listemail = result.email;
+            contact.listphoneno = result.phone;
+            contact.dateofbirth = result.dob;
+            contact.imageUrl = image.path;
+            return contact.save();
+        })
+        .then(result =>{
+            console.log("contact updated");
+            res.redirect('/home');
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+    }
+    
+}
+
+exports.deleteContact = (req,res,next)=>{
+    const id = req.params.id;
+    Contact.findByIdAndRemove(id)
+    .then(result =>{
+        console.log("Delete success");
+        // res.status(202).json({message:'Delete Success'});
+        res.redirect('/home');
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

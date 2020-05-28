@@ -14,15 +14,159 @@
     <title><%= pageTitle %></title>
 
 </head>
+<script>
+    var pfno = 0;
+    function addFields(c) {
+        if (c == 1) {
+            var field = document.createElement("input");
+            var x = document.getElementById('phoneField');
+            field.type = "number";
+            x.appendChild(field);
+        }
+        else{
+            var field = document.createElement("input");
+            var x = document.getElementById('emailField');
+            field.type = "email";
+            x.appendChild(field);
+        }
+
+    }
+    function removeFields(c) {
+        if(c==1){
+            var x = document.getElementById('phoneField');
+        x.removeChild(x.lastChild);
+        }
+        else{
+            var x = document.getElementById('emailField');
+        x.removeChild(x.lastChild);
+        }
+        
+    }
+
+    function addcontact() {
+        var x = document.forms.myForm;
+        var countp = document.getElementById('phoneField').childElementCount;
+        var counte = document.getElementById('emailField').childElementCount;
+        var arr1 = [];
+        var arr2 = [];
+        arr1.push(x.elements[2].value);
+        for (var i = 0; i < countp; i++) {
+            arr1.push(x.elements[3 + i].value);
+        }
+        console.log(x.elements[3].value);
+        arr2.push(x.elements[5+countp].value);
+        for(var i=0;i<counte;i++){
+            arr2.push(x.elements[5+countp+i+1].value);
+        }
+
+        var result = {
+            name:x.elements[0].value,
+            dob:x.elements[1].value,
+            phone:arr1,
+            email:arr2
+        };
+
+       document.getElementById('s1').value = JSON.stringify(result);
+        document.getElementById("sendForm").submit();
+    }
+
+    function showEditHandler(x){
+        console.log(x);
+        var obj;
+        document.getElementsByClassName('backdrop')[0].style.display = "block";
+        document.getElementsByClassName('editForm')[0].style.display = "block";
+       fetch('/editContact/'+x,{
+           method:'get'
+       })
+       .then(result => {
+        return result.json();
+       })
+       .then(data =>{
+
+           document.forms.myForm.name.value = data.contact.name;
+           document.forms.myForm.date.value = data.contact.dateofbirth;
+           document.forms.myForm.phone.value = data.contact.listphoneno[0];
+           if(data.contact.listphoneno.length > 1){
+               for(var i=1;i<data.contact.listphoneno.length;i++){
+                   document.getElementById("morePhoneField").click();
+                   document.forms.myForm.elements[2+i].value = data.contact.listphoneno[i];
+                   console.log("field");
+               }
+           }
+           document.forms.myForm.email.value = data.contact.listemail[0];
+           if(data.contact.listemail.length > 1){
+               var c = document.getElementById("phoneField").childElementCount;
+            for(var i=1;i<data.contact.listemail.length;i++){
+                   document.getElementById("moreEmailField").click();
+                   document.forms.myForm.elements[5+c+i].value = data.contact.listemail[i];
+               }
+           }
+           document.getElementById("s2").value = data.contact._id;
+           console.log(data);
+       })
+       .catch(err =>{
+           console.log(err);
+       });
+       
+    }
+function hidebackdrop(){
+    var count = document.getElementById("phoneField").childElementCount;
+    while(count!=0){
+        document.getElementById("phoneField").removeChild(document.getElementById("phoneField").lastChild);
+        count = count-1;
+    }
+    
+    var count2 = document.getElementById("emailField").childElementCount;
+    while(count2!=0){
+        document.getElementById("emailField").removeChild(document.getElementById("emailField").lastChild);
+        count2 = count2-1;
+    }
+    document.getElementsByClassName("backdrop")[0].style.display = "none";
+    document.getElementsByClassName("editForm")[0].style.display = "none";
+
+}
+
+function deleteHandler(x){
+    fetch('/contact/'+x,{
+        method:'DELETE'
+    })
+    .then(res=>{
+        location.reload();
+        console.log(res);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+}
+
+</script>
 
 <body>
-    <div class="backdrop"></div>
-
-    <form action="" id="" method="post">
-
-    </form>
-
+<div class="backdrop" onclick="hidebackdrop()"></div>
     <%- include('./includes/navigation.ejs') %>
+    <div class="editForm">
+        <form name="myForm" id="addForm" action="#" method="GET">
+            <input type="text" name="name"><br>
+            <input type="date" name="date"><br>
+            <input type="number" name="phone" />
+            <div id="phoneField"></div>
+            <button id="morePhoneField" type="button" onclick="addFields(1)">+</button>
+            <button type="button" onclick="removeFields(1)">-</button>
+            <br>
+            <input type="email" name="email">
+            <div id="emailField"></div>
+            <br>
+            <button id="moreEmailField" type="button" onclick="addFields(2)">+</button>
+            <button type="button" onclick="removeFields(2)">-</button>
+            <button type="button" onclick="addcontact()">dd</button>
+        </form>
+    
+        <form id="sendForm" action="/editContact" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" id="image">
+            <input type="hidden" id="s1" name="data" />
+            <input type="hidden" id="s2" name="id" />
+        </form>
+    </div>
     <div class="main">
         <form action="" method="post">
             <input type="text" />
@@ -40,8 +184,8 @@
                     </div>
                     <div id="collapseOne<%=c._id%>" class="collapse" data-parent="#accordion">
                         <div class="card-body">
-                            <button type="button">Edit</button>
-                            <button type="button">Delete</button>
+                            <button type="button" onclick='showEditHandler("<%=c._id%>")'>Edit</button>
+                            <button type="button" onclick='deleteHandler("<%=c._id%>")'>Delete</button>
                             
                             <%= c.dateofbirth %>
                             <% for(let p of c.listphoneno) {%>
