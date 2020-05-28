@@ -13,7 +13,7 @@ const contactSchema = new Schema({
         unique: true
     }],
     dateofbirth: {
-        type: Date,
+        type: String,
         required: false
     },
     listphoneno: [
@@ -22,7 +22,15 @@ const contactSchema = new Schema({
             required: true,
             unique: true
         }
-    ]
+    ],
+    imageUrl:{
+        type:String,
+        required:false
+    },
+    user:{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }
 
 });
 

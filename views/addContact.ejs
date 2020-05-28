@@ -83,7 +83,8 @@
         <button type="button" onclick="addcontact()">dd</button>
     </form>
 
-    <form id="sendForm" action="/addContact" method="post">
+    <form id="sendForm" action="/addContact" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" id="image">
         <input type="hidden" id="s1" name="data" />
     </form>
 

@@ -9,8 +9,10 @@ router.get('/', homeController.getLanding);
 
 router.get('/home',isAuth,homeController.getHomepage);
 
-router.get('/addContact',homeController.getContact);
+router.get('/addContact',homeController.getAddContact);
 
-router.post('/addContact',homeController.postContact);
+router.post('/addContact',homeController.postAddContact);
+
+// router.get('/contacts',homeController.getContacts);
 
 module.exports = router;
