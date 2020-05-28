@@ -1,6 +1,6 @@
 const Contact = require('../models/contact');
 exports.getHomepage = (req, res, next) => {
-    Contact.find()
+    Contact.find({user:req.session.user})
     .then(contacts => {
         // console.log(contacts);
         res.render('home',{
@@ -48,15 +48,3 @@ exports.postAddContact = (req, res, next) => {
     })
 };
 
-// exports.getContacts = (req,res,next)=>{
-//     Contact.find()
-//     .then(contacts => {
-//         console.log(contacts);
-//         res.render('home',{
-//             contacts: contacts
-//         });
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
-// }
