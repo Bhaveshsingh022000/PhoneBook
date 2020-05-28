@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Contact</title>
+</head>
+<script>
+    var pfno = 0;
+    function addFields(c) {
+        if (c == 1) {
+            var field = document.createElement("input");
+            var x = document.getElementById('phoneField');
+            field.type = "number";
+            x.appendChild(field);
+        }
+        else{
+            var field = document.createElement("input");
+            var x = document.getElementById('emailField');
+            field.type = "email";
+            x.appendChild(field);
+        }
+
+    }
+    function removeFields(c) {
+        if(c==1){
+            var x = document.getElementById('phoneField');
+        x.removeChild(x.lastChild);
+        }
+        else{
+            var x = document.getElementById('emailField');
+        x.removeChild(x.lastChild);
+        }
+        
+    }
+
+    function addcontact() {
+        var x = document.forms[0];
+        var countp = document.getElementById('phoneField').childElementCount;
+        var counte = document.getElementById('emailField').childElementCount;
+        var arr1 = [];
+        var arr2 = [];
+        arr1.push(x.elements[2].value);
+        for (var i = 0; i < countp; i++) {
+            arr1.push(x.elements[3 + i].value);
+        }
+        console.log(x.elements[3].value);
+        arr2.push(x.elements[5+countp].value);
+        for(var i=0;i<counte;i++){
+            arr2.push(x.elements[5+countp+i+1].value);
+        }
+
+        var result = {
+            name:x.elements[0].value,
+            dob:x.elements[1].value,
+            phone:arr1,
+            email:arr2
+        };
+
+       document.getElementById('s1').value = JSON.stringify(result);
+        document.getElementById("sendForm").submit();
+    }
+
+
+</script>
+
+<body>
+
+    <form id="addForm" action="#" method="GET">
+        <input type="text" name="name"><br>
+        <input type="date" name="date"><br>
+        <input type="number" name="phone" />
+        <div id="phoneField"></div>
+        <button type="button" onclick="addFields(1)">+</button>
+        <button type="button" onclick="removeFields(1)">-</button>
+        <br>
+        <input type="email" name="email">
+        <div id="emailField"></div>
+        <br>
+        <button type="button" onclick="addFields(2)">+</button>
+        <button type="button" onclick="removeFields(2)">-</button>
+        <button type="button" onclick="addcontact()">dd</button>
+    </form>
+
+    <form id="sendForm" action="/addContact" method="post">
+        <input type="hidden" id="s1" name="data" />
+    </form>
+
+</body>
+
+</html>

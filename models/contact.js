@@ -3,23 +3,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const contactSchema = new Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
-    listemail:[{
+    listemail: [{
         type: String,
-        required: true
+        required: true,
+        unique: true
     }],
-    dateofbirth:{
-        type:Date,
-        required:false
+    dateofbirth: {
+        type: Date,
+        required: false
     },
-    listphoneno:[
+    listphoneno: [
         {
             type: Number,
-            required: true
+            required: true,
+            unique: true
         }
     ]
 
 });
+
+module.exports = mongoose.model('Contact',contactSchema);
