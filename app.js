@@ -8,6 +8,7 @@ const MONGODB_URI ='mongodb+srv://bhavesh_05:Bhavesh2017@cluster0-yuok1.mongodb.
 
 
 const homeRoutes = require('./routes/home');
+const authRoutes = require('./routes/auth');
 
 app.set('view engine','ejs');
 app.set('views','views');
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 
 app.use(homeRoutes);
+app.use(authRoutes);
 
 mongoose.connect(MONGODB_URI)
     .then(result =>{

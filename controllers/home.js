@@ -3,3 +3,7 @@ exports.getHomepage = (req,res,next)=>{
         pageTitle: 'Home'
     });
 };
+
+exports.getLanding = (req, res, next)=>{
+    res.render('landing')
+};
