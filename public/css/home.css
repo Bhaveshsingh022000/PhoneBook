@@ -30,22 +30,85 @@ body{
 }
 
 .editForm{
-    padding:60px 10px;
+    overflow: auto;
+    padding:30px 10px;
     text-align:center;
     position: fixed;
-    top: 25vh;
+    top: 20vh;
     left: 45vh;
     background-color: #2a8ea5;
     width: 50%;
     height: 70vh;
     z-index: 10;
-    display: block;
+    display: none;
 }
 
 .editForm input{
     width:250px;
     margin:10px;
 }
+
+#morePhoneField{
+    position:fixed;
+    top:52.9%;
+    left:57%;
+    width:28px;
+    color:#2a8ea5;
+    background-color:white;
+    border:none;
+    text-align:center;
+
+}
+#phoneField{
+    position:relative;
+    left:188px;
+    width:100px;
+}
+#emailField{
+    position:relative;
+    left:196px;
+    width:100px;
+}
+
+#lessPhoneField{
+    position:fixed;
+    top:52.9%;
+    left:60%;
+    width:28px;
+    color:#2a8ea5;
+    background-color:white;
+    border:none;
+    text-align:center;
+}
+#firstEmail{
+    position:relative;
+    top:-20px;
+    
+    
+}
+
+#moreEmailField{
+    position:fixed;
+    top:60.4%;
+    left:56.5%;
+    width:28px;
+    color:#2a8ea5;
+    background-color:white;
+    border:none;
+    text-align:center;
+}
+
+#lessEmailField{
+    position:fixed;
+    top:60.4%;
+    left:60.5%;
+    width:28px;
+    color:#2a8ea5;
+    background-color:white;
+    border:none;
+    text-align:center;
+}
+
 
 .pagination{
     position: fixed;
@@ -111,4 +174,20 @@ body{
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+#update_button{
+    position:relative;
+    top:80px;
+    width:150px;
+    height:30px;
+    background-color:#4ccc91;
+    color:white;
+    border:none;
+}
+
+#imageSel{
+    position:relative;
+    top:-50px;
+    margin-top:10px;
 }

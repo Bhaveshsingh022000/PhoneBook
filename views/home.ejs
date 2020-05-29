@@ -184,24 +184,25 @@
     <div class="backdrop" onclick="hidebackdrop()"></div>
     <%- include('./includes/navigation.ejs') %>
     <div class="editForm">
+        <h3 style="color: white;" >Edit Contact</h3>
         <form name="myForm" id="addForm" action="#" method="GET">
             <input type="text" name="name"><br>
             <input type="date" name="date"><br>
-            <input type="number" name="phone" />
-            <div id="phoneField"></div>
+            <input type="number" name="phone" /><br>
+            <div id="phoneField"></div><br>
             <button id="morePhoneField" type="button" onclick="addFields(1)">+</button>
-            <button type="button" onclick="removeFields(1)">-</button>
-            <br>
-            <input type="email" name="email">
+            <button id="lessPhoneField" type="button" onclick="removeFields(1)">-</button>
+           
+            <input type="email" id="firstEmail" name="email">
             <div id="emailField"></div>
-            <br>
+            
             <button id="moreEmailField" type="button" onclick="addFields(2)">+</button>
-            <button type="button" onclick="removeFields(2)">-</button>
-            <button type="button" onclick="addcontact()">dd</button>
+            <button type="button" id="lessEmailField" onclick="removeFields(2)">-</button>
+            <button type="button" id="update_button" onclick="addcontact()">Update Contact</button>
         </form>
 
         <form id="sendForm" action="/editContact" method="post" enctype="multipart/form-data">
-            <input type="file" name="image" id="image">
+            <input id="imageSel" type="file" name="image" id="image">
             <input type="hidden" id="s1" name="data" />
             <input type="hidden" id="s2" name="id" />
         </form>
