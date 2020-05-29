@@ -1,17 +1,17 @@
 <link rel="stylesheet" href="/css/navigation.css">
 
+
 <header class="main-header">
-    <nav class="nav">
+   
         <ul class="nav-items">
-            <li class="nav-item"><a href="/home">Home</a></li>
-            <li class="nav-item"><a href="/addContact">Add Contact</a></li>
-        </ul>
-        <ul class="nav-items">
-            <li class="nav-item">
+            <li class="nav-item"><a class="<%= navActive == true ? 'active' : null %>" href="/home">Home</a></li>
+            <li class="nav-item"><a class="<%= nav == true ? 'active' : null %>" href="/addContact">Add Contact</a></li>
+            <li style="float: right;" class="nav-item">
                 <form action="/logout" method="post">
-                    <button type="submit">Logout</button>
+                    <button id="logout" type="submit">Logout</button>
                 </form>
             </li>
         </ul>
-    </nav>
+        
+    
 </header>

@@ -18,6 +18,8 @@ exports.getHomepage = (req, res, next) => {
             // console.log(contacts);
             res.render('home', {
                 pageTitle: 'Home',
+                navActive:true,
+                nav:false,
                 contacts: contacts,
                 currentPage: page,
                 hasNextPage: Items_per_Page * page < totalItem,
@@ -37,7 +39,10 @@ exports.getLanding = (req, res, next) => {
 };
 
 exports.getAddContact = (req, res, next) => {
-    res.render('addContact');
+    res.render('addContact',{
+        navActive:false,
+        nav :true
+    });
 };
 
 exports.postAddContact = (req, res, next) => {
