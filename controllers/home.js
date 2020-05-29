@@ -51,25 +51,42 @@ exports.postAddContact = (req, res, next) => {
     const image = req.file;
 
     if (!image) {
-        res.redirect('/addContact');
+        const contact = new Contact({
+            name: result.name,
+            listemail: result.email,
+            dateofbirth: result.dob,
+            listphoneno: result.phone,
+            user: req.session.user,
+            imageUrl: ''
+        });
+        contact.save()
+            .then(output => {
+                res.redirect('/home');
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
-    const imageUrl = image.path;
-    console.log(imageUrl);
-    const contact = new Contact({
-        name: result.name,
-        listemail: result.email,
-        dateofbirth: result.dob,
-        listphoneno: result.phone,
-        user: req.session.user,
-        imageUrl: imageUrl
-    });
-    contact.save()
-        .then(output => {
-            res.redirect('/home');
-        })
-        .catch(error => {
-            console.log(error);
-        })
+    else{
+        const imageUrl = image.path;
+        console.log(imageUrl);
+        const contact = new Contact({
+            name: result.name,
+            listemail: result.email,
+            dateofbirth: result.dob,
+            listphoneno: result.phone,
+            user: req.session.user,
+            imageUrl: imageUrl
+        });
+        contact.save()
+            .then(output => {
+                res.redirect('/home');
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+    
 };
 
 exports.getEditContact = (req, res, next) => {
