@@ -174,3 +174,8 @@ exports.searchContacts = (req, res, next) => {
     })
     
 };
+
+// exports.viewContact = (req,res,next)=>{
+//     const id = req.params.cid;
+
+// }

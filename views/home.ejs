@@ -168,15 +168,28 @@
         .then(data =>{
             var s = document.getElementsByClassName("searchRes")[0];
             for(var i=0;i<data.contacts.length;i++){
-                var p = document.createElement("p");
-            p.innerText = data.contacts[i].name;
+                var p = document.createElement("button");
+                var id = data.contacts[i]._id;
+                // console.log(id);
+                p.innerText = data.contacts[i].name;
+                p.setAttribute("onclick","submitHandler()");
+                // var f = document.createElement("form");
+                // f.method = "GET";
+                // f.action = "/viewContact/"+data.contacts[i]._id;
+                // p.onclick = "submitHandler("+data.contacts._id+")";
+                // p.appendChild(f);
             s.appendChild(p);
+            
             }
             
         })
         .catch(err =>{
             console.log(err);
         })
+    }
+
+    function submitHandler(){
+        alert("ok");
     }
 </script>
 

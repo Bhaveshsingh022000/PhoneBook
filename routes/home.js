@@ -21,4 +21,6 @@ router.delete('/contact/:id',isAuth,homeController.deleteContact);
 
 router.get('/searchContact/:query',homeController.searchContacts);
 
+// router.get('/viewContact/:cid',homeController.viewContact);
+
 module.exports = router;
