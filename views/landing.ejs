@@ -4,28 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <title>Landing</title>
+    <link rel="stylesheet" href="css/landing.css">
 </head>
 
 <body>
-    <div class="login">
-        <form action="/login" method="post">
-            Email <input type="email" name="email" id=""><br>
-            Password <input type="password" name="password" id="">
-            <button type="submit">login</button>
-        </form>
-    </div>
-    <br><br><br>
-    <div class="singup">
-        <form action="/signup" method="post">
-           Name <input type="text" name="name" /><br>
-           Email <input type="email" name="email" id="" /><br>
-           password <input type="password" name="password" /><br>
-           conf password <input type="password" name="confirmPassword" /><br>
-           <button type="submit" name="submit">Sign up</button>
-        </form>
-    </div>
 
+    <div class="landing-main">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#slogin">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#signup">SignUp</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="slogin" class="container tab-pane active"><br>
+                <div class="login">
+                    <form action="/login" method="post">
+                        <input type="email" placeholder="Email" name="email" id=""><br>
+                        <input type="password" placeholder="Passowrd" name="password" id="">
+                        <br><button type="submit">Login</button>
+                    </form>
+                    <p>Don't have a account ?</p> 
+                    <a class="nav-link" role="tablist" data-toggle="tab" href="#signup">SignUp</a>
+                </div>
+            </div>
+            <div id="signup" class="container tab-pane fade"><br>
+                <div class="singup">
+                    <form action="/signup" method="post">
+                        <input type="text" placeholder="Name" name="name" /><br>
+                        <input type="email" placeholder="Email" name="email" id="" /><br>
+                        <input type="password" placeholder="Password" name="password" /><br>
+                        <input type="password" placeholder="Confirm Password" name="confirmPassword" /><br>
+                        <button type="submit" name="submit">Sign up</button>
+                    </form>
+                    <p>Already have a account ?</p>
+                        <a class="nav-link" role="tablist" data-toggle="tab" href="#slogin">Login</a>
+            
+                </div>
+            </div>
+            
+
+
+        </div>
+
+
+
+    </div>
 </body>
 
 </html>

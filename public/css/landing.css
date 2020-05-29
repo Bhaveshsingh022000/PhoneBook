@@ -1,0 +1,39 @@
+.landing-main{
+    width: 30%;
+    height: 100vh;
+    position: fixed;
+    text-align: center;
+    background-color: rgb(205, 224, 167);
+}
+
+.landing-main input{
+    width: 80%;
+    height: 45px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.login{
+    margin-top: 100px;
+}
+
+.singup{
+    margin-top: 100px;
+}
+
+.landing-main button{
+    margin: 10px;
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: rgb(17, 127, 155);
+
+}
+
+body{
+    background-image: url('../back.jpg');
+    
+}

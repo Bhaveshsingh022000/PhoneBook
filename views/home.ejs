@@ -11,6 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title><%= pageTitle %></title>
 
 </head>
@@ -197,10 +199,15 @@
         </form>
     </div>
     <div class="main">
-        <form action="#" method="get">
-            <input type="text" id="search" oninput="searchHandler()" />
-            <button type="submit">Search</button>
-        </form>
+        
+            <div class="input-group mb-2">
+                <input type="text" style="width: 40%;" class="form-control" placeholder="Search Contacts" id="search" oninput="searchHandler()" />
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fa fa-search"></i></span>
+              </div>
+              </div>
+        
+        
         <div class="searchRes">
 
         </div>
