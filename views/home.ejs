@@ -13,7 +13,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title><%= pageTitle %></title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+<title><%= pageTitle %></title>
 
 </head>
 <script>
@@ -148,7 +151,12 @@
         }
     }
 
+    function hideHandler(){
+        document.getElementsByClassName("searchRes")[0].style.display = "none";
+    }
+
     function searchHandler() {
+        document.getElementsByClassName("searchRes")[0].style.display = "block";
         clearSearchHandler();
         var x = document.getElementById("search").value;
         fetch('/searchContact/'+x,{
@@ -200,8 +208,8 @@
     </div>
     <div class="main">
         
-            <div class="input-group mb-2">
-                <input type="text" style="width: 40%;" class="form-control" placeholder="Search Contacts" id="search" oninput="searchHandler()" />
+            <div style="position: sticky;" class="input-group mb-2">
+                <input type="text" style="width: 40%;" class="form-control" onblur="hideHandler()" placeholder="Search Contacts" id="search" oninput="searchHandler()" />
             <div class="input-group-append">
                 <span class="input-group-text"><i class="fa fa-search"></i></span>
               </div>
@@ -211,25 +219,28 @@
         <div class="searchRes">
 
         </div>
-
+<br>
         <div id="accordion">
             <% for(let c of contacts) {%>
             <div class="card">
                 <div class="card-header">
                     <a class="card-link" data-toggle="collapse" href="#collapseOne<%=c._id%>">
-                        <img src="/<%= c.imageUrl %>" alt="" srcset="" style="border-radius: 50%;" height="80px"
-                            width="80px">
-                        <p style="text-transform: capitalize;"><%= c.name %></p>
+                        <img src="/<%= c.imageUrl %>" alt="" srcset="" style="border-radius: 50%;" height="70px"
+                            width="70px">
+                        <span style="text-transform: capitalize;"><%= c.name %></span>
                     </a>
                 </div>
                 <div id="collapseOne<%=c._id%>" class="collapse" data-parent="#accordion">
                     <div class="card-body">
-                        <button type="button" onclick='showEditHandler("<%=c._id%>")'>Edit</button>
-                        <button type="button" onclick='deleteHandler("<%=c._id%>")'>Delete</button>
+                        <button type="button" class="editc" onclick='showEditHandler("<%=c._id%>")'><i class='far fa-edit'></i></button>
+                        <button type="button" class="deletec" onclick='deleteHandler("<%=c._id%>")'><i class="fa fa-trash"></i></button>
 
-                        <%= c.dateofbirth %>
-                        <% for(let p of c.listphoneno) {%>
-                        <%= p%>
+                        <i class="fa fa-calendar"></i> &nbsp;<%= c.dateofbirth %><br>
+                        <br><% for(let p of c.listphoneno) {%>
+                            <span><i class="fa fa-phone"></i>&nbsp;<%= p%></span>&nbsp;&nbsp;
+                        <% } %>
+                        <% for(let e of c.listemail) {%>
+                            <span><i class="fa fa-envelope"></i>&nbsp;<%= e%></span><br>
                         <% } %>
                     </div>
                 </div>
@@ -237,22 +248,23 @@
             <% }%>
         </div>
 
-        <section class="pagination">
-            <% if(currentPage !== 1 && previousPage !==1) {%>
-            <a href="/home/?page=1">1</a>
-            <%}%>
-            <% if(hasPreviousPage) {%>
-            <a href="/home/?page=<%= previousPage %>"><%= previousPage %></a>
-            <%}%>
-                <a href="/home/?page=<%= currentPage %>" class="active"><%= currentPage%></a>
-
-            <% if(hasNextPage) {%>
-            <a href="/home/?page=<%= nextPage %>"><%= nextPage %></a>
-            <%}%>
-            <% if(lastPage !== currentPage && nextPage !== lastPage) {%>
-            <a href="/home/?page=<%= lastPage %>"><%= lastPage %></a>
-            <%}%>    
-        </section>
-
+        
     </div>
+    <section class="pagination">
+        <% if(currentPage !== 1 && previousPage !==1) {%>
+        <a href="/home/?page=1">1</a>
+        <%}%>
+        <% if(hasPreviousPage) {%>
+        <a href="/home/?page=<%= previousPage %>"><%= previousPage %></a>
+        <%}%>
+            <a href="/home/?page=<%= currentPage %>" class="active"><%= currentPage%></a>
+
+        <% if(hasNextPage) {%>
+        <a href="/home/?page=<%= nextPage %>"><%= nextPage %></a>
+        <%}%>
+        <% if(lastPage !== currentPage && nextPage !== lastPage) {%>
+        <a href="/home/?page=<%= lastPage %>"><%= lastPage %></a>
+        <%}%>    
+    </section>
+
 </body>
