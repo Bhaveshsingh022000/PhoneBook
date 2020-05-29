@@ -1,3 +1,6 @@
+body{
+    background-image: url('../home.jpg');
+}
 .main{
     position: fixed;
     top: 10%;
@@ -7,7 +10,7 @@
     padding: 2.5rem;
     overflow: auto;
     /* text-align: center; */
-    background-color: rgb(85, 179, 147);
+    background-color: rgb(85, 179, 147,0.5);
 }
 
 /* .main input{
@@ -27,14 +30,21 @@
 }
 
 .editForm{
+    padding:60px 10px;
+    text-align:center;
     position: fixed;
-    top: 30vh;
-    left: 30vh;
-    background-color: brown;
+    top: 25vh;
+    left: 45vh;
+    background-color: #2a8ea5;
     width: 50%;
-    height: 50vh;
+    height: 70vh;
     z-index: 10;
-    display: none;
+    display: block;
+}
+
+.editForm input{
+    width:250px;
+    margin:10px;
 }
 
 .pagination{
@@ -51,16 +61,16 @@
     text-align: center;
     border-radius: 50%;
     text-decoration: none;
-    color: green;
+    color: white;
     padding: 2px;
-    border: 1px solid green;
+    border: 1px solid #007c80;
     margin: 0 1rem;
 }
 
 .pagination a:hover,
 .pagination a:active,
 .pagination a.active{
-    background-color: green;
+    background-color: #007c80;
     color: white;
 }
 
