@@ -1,9 +1,28 @@
 .landing-main{
     width: 30%;
     height: 100vh;
+    color:white;
     position: fixed;
     text-align: center;
-    background-color: rgb(205, 224, 167);
+    background: linear-gradient(to bottom, #2b4b4c -17%, #7d8a7f 101%);
+}
+
+#mainTitle{
+    font-size:55px;
+    color:white;
+    position:absolute;
+    z-index:5;
+    right:13%;
+    top:20px;
+    letter-spacing:10px;
+}
+#Picon{
+    color:#87b3da;
+    z-index:5px;
+    position:absolute;
+    right:43%;
+    font-size:48px;
+    top:37px;
 }
 
 .landing-main input{
@@ -19,11 +38,22 @@
     .landing-main{
         width:100%;
     }
+    #mainTitle{
+        display:none;
+    }
+   
 }
 
 @media(min-width:800px){
     .landing-main{
         width:40%;
+    }
+    #Picon{
+        font-size:40px;
+    }
+    #mainTitle{
+        right:8%;
+        font-size:45px;
     }
 }
 
@@ -40,11 +70,31 @@
     width: 100px;
     height: 30px;
     color: white;
-    background-color: rgb(17, 127, 155);
+    border:none;
+    border-radius:6px;
+    background-color: rgb(25, 155, 169);
 
 }
 
 body{
-    background-image: url('../back.jpg');
+    background-image: url('../landing.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     
 }
+
+#lt{
+    cursor: pointer;
+}
+
+#st{
+    cursor: pointer;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+a:hover{
+    color: white;
+}
+

@@ -4,10 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Landing</title>
     <link rel="stylesheet" href="css/landing.css">
 </head>
@@ -31,7 +37,7 @@
 </script>
 
 <body>
-
+    <span ><i id="Picon" style="color: white;" class="fa fa-book"></i></span> <h1 id="mainTitle">Phone Book</h1>
     <div class="landing-main">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
@@ -45,6 +51,7 @@
         <div class="tab-content">
             <div id="slogin" class="container tab-pane active"><br>
                 <div class="login">
+                    <h1>Login</h1>
                     <form action="/login" method="post">
                         <input type="email" placeholder="Email" required name="email" id=""><br>
                         <input type="password" placeholder="Passowrd" maxlength="10" minlength="10" required
@@ -52,12 +59,13 @@
                         <br><button type="submit">Login</button>
                     </form>
                     <p>Don't have a account ?</p>
-                    <p onclick="reveal(1)">Signup</p>
+                    <a id="st" onclick="reveal(1)">Signup</a>
 
                 </div>
             </div>
             <div id="signup" class="container tab-pane fade"><br>
                 <div class="singup">
+                    <h1>Signup</h1>
                     <form action="/signup" name="signupForm" onsubmit="return validate()" method="post">
                         <input type="text" placeholder="Name" required name="name" /><br>
                         <input type="email" placeholder="Email" required name="email" id="" /><br>
@@ -65,7 +73,7 @@
                         <input type="password" placeholder="Confirm Password" required name="confirmPassword" /><br>
                         <button type="submit" name="submit">Sign up</button>
                     </form>
-                    <p>Already have a account ?</p><p onclick="reveal(2)">Login</p>
+                    <p>Already have a account ?</p><a id="lt" onclick="reveal(2)">Login</a>
                     
 
                 </div>
@@ -74,6 +82,7 @@
     </div>
     
 </body>
+
 <script>
 function reveal(x){
     if(x == 2){
