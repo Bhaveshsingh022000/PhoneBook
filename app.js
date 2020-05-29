@@ -25,6 +25,7 @@ const fileStorage = multer.diskStorage({
         cb(null, Math.random().toString() +'_'+file.originalname);
     }
 });
+//chekc
 
 const filefilter = (req,file,cb)=>{
     if(file.mimetype === 'image/png' ||file.mimetype === 'image/jpg' ||file.mimetype === 'image/jpeg'){
