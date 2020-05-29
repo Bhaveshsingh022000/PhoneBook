@@ -136,9 +136,14 @@
             method: 'DELETE'
         })
             .then(res => {
+                window.location.reload();
                 return res.json();
             })
+            .then(resi=>{
+                window.location.reload();
+            })
             .catch(err => {
+                window.location.reload();
                 console.log(err);
             });
     }
@@ -168,7 +173,7 @@
         .then(data =>{
             var s = document.getElementsByClassName("searchRes")[0];
             for(var i=0;i<data.contacts.length;i++){
-                var p = document.createElement("button");
+                var p = document.createElement("p");
                 var id = data.contacts[i]._id;
                 // console.log(id);
                 p.innerText = data.contacts[i].name;

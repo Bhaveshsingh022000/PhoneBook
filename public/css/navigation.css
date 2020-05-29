@@ -19,11 +19,21 @@ ul {
   }
   
   li a:hover:not(.active) {
+    text-decoration:none;
+    color:white;
     background-color: #348075;
+  }
+
+  li a.active,
+  li a:hover{
+    text-decoration:none;
+    color:white
   }
   
   .active {
-    background-color: #da4d7b;
+    text-decoration:none;
+    color:white;
+    background-color: #ea1a5d;
   }
   
   #logout{
