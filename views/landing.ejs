@@ -11,16 +11,34 @@
     <title>Landing</title>
     <link rel="stylesheet" href="css/landing.css">
 </head>
+<script>
+    function validate() {
+        var pass = document.forms.signupForm.password.value;
+        var cpass = document.forms.signupForm.confirmPassword.value;
+        if (pass !== cpass){
+            alert('Password and Confirm Password should be same');
+            document.forms.signupForm.password.focus();
+            return false;
+        }
+        var letters = /^[a-zA-z]+$/;
+        var name = document.forms.signupForm.name.value;
+        if(!name.math(letters)){
+            alert('Name cannot contain numbers');
+            return false;
+        }
+
+    }
+</script>
 
 <body>
 
     <div class="landing-main">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#slogin">Login</a>
+                <a class="nav-link active" id="rlog" data-toggle="tab" href="#slogin">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#signup">SignUp</a>
+                <a class="nav-link" id="rsign" data-toggle="tab" href="#signup">SignUp</a>
             </li>
         </ul>
 
@@ -29,35 +47,43 @@
                 <div class="login">
                     <form action="/login" method="post">
                         <input type="email" placeholder="Email" required name="email" id=""><br>
-                        <input type="password" placeholder="Passowrd" maxlength="10" minlength="10" required name="password" id="">
+                        <input type="password" placeholder="Passowrd" maxlength="10" minlength="10" required
+                            name="password" id="">
                         <br><button type="submit">Login</button>
                     </form>
-                    <p>Don't have a account ?</p> 
-                    <a class="nav-link" role="tablist" data-toggle="tab" href="#signup">SignUp</a>
+                    <p>Don't have a account ?</p>
+                    <p onclick="reveal(1)">Signup</p>
+
                 </div>
             </div>
             <div id="signup" class="container tab-pane fade"><br>
                 <div class="singup">
-                    <form action="/signup" method="post">
+                    <form action="/signup" name="signupForm" onsubmit="return validate()" method="post">
                         <input type="text" placeholder="Name" required name="name" /><br>
                         <input type="email" placeholder="Email" required name="email" id="" /><br>
                         <input type="password" placeholder="Password" required name="password" /><br>
                         <input type="password" placeholder="Confirm Password" required name="confirmPassword" /><br>
                         <button type="submit" name="submit">Sign up</button>
                     </form>
-                    <p>Already have a account ?</p>
-                        <a class="nav-link" role="tablist" data-toggle="tab" href="#slogin">Login</a>
-            
+                    <p>Already have a account ?</p><p onclick="reveal(2)">Login</p>
+                    
+
                 </div>
             </div>
-            
-
-
         </div>
-
-
-
     </div>
+    
 </body>
+<script>
+function reveal(x){
+    if(x == 2){
+        document.getElementById("rlog").click();
+    }
+    else{
+        document.getElementById("rsign").click();
+    }
+    
+}
+</script>
 
 </html>

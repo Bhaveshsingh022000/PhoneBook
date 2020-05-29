@@ -8,12 +8,12 @@ exports.postSignup = (req,res,next)=>{
     const name = req.body.name;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
-    console.log(confirmPassword);
-    console.log(password);
+    // console.log(confirmPassword);
+    // console.log(password);
     User.findOne({email: email})
     .then(userDoc =>{
         if(userDoc){
-            return res.redirect('/');
+            return res.send("<script>alert('user already exists');</script>");
         }
         return bcrypt.hash(password, 12)
         .then(hashedPassword => {

@@ -13,6 +13,17 @@ body{
     background-color: rgb(85, 179, 147,0.5);
 }
 
+@media (max-width:550px){
+    .main{
+        position:fixed;
+        left:0%;
+        right:0%;
+        width:100%;
+        top:6%;
+        height:80%;
+    }
+}
+
 /* .main input{
     align-self: center;
     width: 300px;
@@ -118,6 +129,12 @@ body{
     text-align: center;
 }
 
+@media(max-width:550px){
+    .pagination{
+        left:30%;
+    }
+}
+
 .pagination a{
     height: 30px;
     width: 30px;
@@ -162,6 +179,7 @@ body{
     background-color:#1175b9;
     height: 40px;
     border:none;
+    text-align:center;
     border-radius: 50%;
 }
 
@@ -173,7 +191,21 @@ body{
     border:none;
     width: 40px;
     height: 40px;
+    text-align:center;
     border-radius: 50%;
+}
+@media(max-width:550px){
+    .editc{
+        right:20%;
+        width:30px;
+        height:30px;
+        font-size:10px;
+    }
+    .deletec{
+        width:30px;
+        height:30px;
+        font-size:10px;
+    }
 }
 
 #update_button{
