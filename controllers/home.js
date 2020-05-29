@@ -69,7 +69,7 @@ exports.postAddContact = (req, res, next) => {
     }
     else{
         const imageUrl = image.path;
-        console.log(imageUrl);
+        // console.log(imageUrl);
         const contact = new Contact({
             name: result.name,
             listemail: result.email,

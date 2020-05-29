@@ -1,0 +1,6 @@
+{
+    "env":{
+        "MONGO_USER":"bhavesh_05",
+        "MONGO_PASS":"Bhavesh2017"
+    }
+}

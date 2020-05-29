@@ -186,14 +186,14 @@
     <div class="editForm">
         <h3 style="color: white;" >Edit Contact</h3>
         <form name="myForm" id="addForm" action="#" method="GET">
-            <input type="text" name="name"><br>
-            <input type="date" name="date"><br>
-            <input type="number" name="phone" /><br>
+            <input type="text" name="name" required><br>
+            <input type="date" name="date" required><br>
+            <input type="number" name="phone" required minlength="10" maxlength="10" /><br>
             <div id="phoneField"></div><br>
             <button id="morePhoneField" type="button" onclick="addFields(1)">+</button>
             <button id="lessPhoneField" type="button" onclick="removeFields(1)">-</button>
            
-            <input type="email" id="firstEmail" name="email">
+            <input type="email" id="firstEmail" required name="email">
             <div id="emailField"></div>
             
             <button id="moreEmailField" type="button" onclick="addFields(2)">+</button>

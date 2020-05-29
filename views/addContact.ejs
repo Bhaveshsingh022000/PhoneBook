@@ -84,14 +84,14 @@
         <h3 style="color: white;" >Add Contact</h3>
     
     <form name="addForm" id="addForm" action="#" method="GET">
-        <input type="text" name="name"><br>
-        <input type="date" name="date"><br>
-        <input type="number" name="phone" />
+        <input type="text" required name="name"><br>
+        <input type="date" required name="date"><br>
+        <input type="number" required maxlength="10" minlength="10" name="phone" />
         <div id="phoneField"></div>
         <button type="button" id="morePhoneField" onclick="addFields(1)">+</button>
         <button type="button" id="lessPhoneField" onclick="removeFields(1)">-</button>
         <br>
-        <input type="email" name="email">
+        <input type="email" required name="email">
         <div id="emailField"></div>
         <br>
         <button type="button" id="moreEmailField" onclick="addFields(2)">+</button>

@@ -7,7 +7,7 @@ const session = require('express-session');
 const multer = require('multer');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-const MONGODB_URI = 'mongodb+srv://bhavesh_05:Bhavesh2017@cluster0-yuok1.mongodb.net/phonebook?retryWrites=true&w=majority';
+const MONGODB_URI = `mongodb+srv://bhavesh_05:Bhavesh2017@cluster0-yuok1.mongodb.net/phonebook?retryWrites=true&w=majority`;
 
 const store = new MongoDBStore({
     uri: MONGODB_URI,
@@ -52,7 +52,7 @@ app.use(authRoutes);
 mongoose.connect(MONGODB_URI)
     .then(result => {
         console.log('connected');
-        app.listen(3000);
+        app.listen(process.env.PORT||3000);
     })
     .catch(err => {
         console.log(err);
