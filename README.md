@@ -1,7 +1,7 @@
 # Deployed Project link: https://firstapp05.herokuapp.com
 Steps to run this project on local system :
   1.Run npm install.
-  2.On CMD run npm start
+  2.On CMD run npm start.
 
 Description:
   This project is developed to store contacts of the user on database, In this project user a needs to login to his/her account to store
