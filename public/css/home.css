@@ -19,7 +19,7 @@ body{
         left:0%;
         right:0%;
         width:100%;
-        top:6%;
+        top:7.5%;
         height:80%;
     }
 }
@@ -54,6 +54,14 @@ body{
     display: none;
 }
 
+@media(max-width:550px){
+    .editForm{
+        left:0;
+        width:100%;
+        top:8vh;
+    }
+}
+
 .editForm input{
     width:250px;
     margin:10px;
@@ -61,36 +69,57 @@ body{
 
 #morePhoneField{
     position:fixed;
-    top:52.9%;
+    top:47.9%;
+    left:35%;
+    width:28px;
+    color:#2a8ea5;
+    background-color:white;
+    border:none;
+    text-align:center;
+
+}
+#lessPhoneField{
+    position:fixed;
+    top:47.9%;
     left:57%;
     width:28px;
     color:#2a8ea5;
     background-color:white;
     border:none;
     text-align:center;
-
 }
 #phoneField{
     position:relative;
     left:188px;
     width:100px;
 }
+@media(max-width:550px){
+    #phoneField{
+        left:60px;
+    }
+    #morePhoneField{
+        top:30.5%;
+        left:10%
+    }
+    #lessPhoneField{
+        top:30.5%;
+        left:85%;
+    }
+}
+
 #emailField{
     position:relative;
     left:196px;
     width:100px;
 }
 
-#lessPhoneField{
-    position:fixed;
-    top:52.9%;
-    left:60%;
-    width:28px;
-    color:#2a8ea5;
-    background-color:white;
-    border:none;
-    text-align:center;
+@media(max-width:550px){
+    #emailField{
+        left:60px;
+    }
 }
+
+
 #firstEmail{
     position:relative;
     top:-20px;
@@ -99,9 +128,9 @@ body{
 }
 
 #moreEmailField{
-    position:fixed;
-    top:60.4%;
-    left:56.5%;
+    position:relative;
+    top:-59px;
+    left:-8%;
     width:28px;
     color:#2a8ea5;
     background-color:white;
@@ -110,9 +139,9 @@ body{
 }
 
 #lessEmailField{
-    position:fixed;
-    top:60.4%;
-    left:60.5%;
+    position:relative;
+    top:-59px;
+    left:32%;
     width:28px;
     color:#2a8ea5;
     background-color:white;
@@ -120,6 +149,16 @@ body{
     text-align:center;
 }
 
+@media(max-width:550px){
+    #lessEmailField{
+        top:-60px;
+        left:56%;
+    }
+    #moreEmailField{
+        top:-60px;
+        left:-14%;
+    }
+}
 
 .pagination{
     position: fixed;

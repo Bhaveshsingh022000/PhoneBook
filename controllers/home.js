@@ -140,6 +140,7 @@ exports.postEditContact = (req, res, next) => {
                 res.redirect('/home');
             })
             .catch(err => {
+                return res.send("<script>alert('This contact already exists')</script>");
                 console.log(err);
             })
     }

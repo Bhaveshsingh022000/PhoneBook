@@ -12,10 +12,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>Add Contact</title>
 </head>
@@ -26,28 +26,60 @@
             var field = document.createElement("input");
             var x = document.getElementById('phoneField');
             field.type = "number";
+            field.placeholder = "Phone number"
             x.appendChild(field);
         }
-        else{
+        else {
             var field = document.createElement("input");
             var x = document.getElementById('emailField');
             field.type = "email";
+            field.placeholder = "Email Address"
             x.appendChild(field);
         }
 
     }
     function removeFields(c) {
-        if(c==1){
+        if (c == 1) {
             var x = document.getElementById('phoneField');
-        x.removeChild(x.lastChild);
+            x.removeChild(x.lastChild);
         }
-        else{
+        else {
             var x = document.getElementById('emailField');
-        x.removeChild(x.lastChild);
+            x.removeChild(x.lastChild);
         }
-        
-    }
 
+    }
+    function validate(){
+        var name = document.forms.addForm.name.value;
+        var email =document.forms.addForm.email.value;
+        var dob = document.forms.addForm.date.value;
+        var phone = document.forms.addForm.phone.value;
+        if(name == ''){
+            document.forms.addForm.name.focus();
+            alert('Name Cannot be Empty');
+            return false;
+        }
+        else if(email == ''){
+            document.forms.addForm.email.focus();
+            alert('Email Cannot be Empty');
+            return false;
+        }
+        else if(dob == ''){
+            document.forms.addForm.date.focus();
+            alert('Date of Birth Cannot be Empty');
+            return false;
+        }
+        else if(phone == ''){
+            document.forms.addForm.phone.focus();
+            alert('Phone Cannot be Empty');
+            return false;
+        }
+        else if(phone.length != 10){
+            alert('Please enter a valid phone number');
+            return false;
+        }
+        return true;
+    }
     function addcontact() {
         var x = document.forms.addForm;
         var countp = document.getElementById('phoneField').childElementCount;
@@ -59,21 +91,27 @@
             arr1.push(x.elements[3 + i].value);
         }
         console.log(x.elements[3].value);
-        arr2.push(x.elements[5+countp].value);
-        for(var i=0;i<counte;i++){
-            arr2.push(x.elements[5+countp+i+1].value);
+        arr2.push(x.elements[5 + countp].value);
+        for (var i = 0; i < counte; i++) {
+            arr2.push(x.elements[5 + countp + i + 1].value);
         }
 
         var result = {
-            name:x.elements[0].value,
-            dob:x.elements[1].value,
-            phone:arr1,
-            email:arr2
+            name: x.elements[0].value,
+            dob: x.elements[1].value,
+            phone: arr1,
+            email: arr2
         };
 
-       document.getElementById('s1').value = JSON.stringify(result);
-        document.getElementById("sendForm").submit();
+        document.getElementById('s1').value = JSON.stringify(result);
+        var bol = validate();
+        if(bol){
+            document.getElementById("sendForm").submit();
+        }
+        
     }
+
+    
 
 
 </script>
@@ -81,29 +119,30 @@
 <body>
     <%- include('./includes/navigation.ejs') %>
     <div class="editForm" style="display: block;">
-        <h3 style="color: white;" >Add Contact</h3>
-    
-    <form name="addForm" id="addForm" action="#" method="GET">
-        <input type="text" required name="name"><br>
-        <input type="date" required name="date"><br>
-        <input type="number" required maxlength="10" minlength="10" name="phone" />
-        <div id="phoneField"></div>
-        <button type="button" id="morePhoneField" onclick="addFields(1)">+</button>
-        <button type="button" id="lessPhoneField" onclick="removeFields(1)">-</button>
-        <br>
-        <input type="email" required name="email">
-        <div id="emailField"></div>
-        <br>
-        <button type="button" id="moreEmailField" onclick="addFields(2)">+</button>
-        <button type="button" id="lessEmailField" onclick="removeFields(2)">-</button>
-        <button type="button" id="update_button" onclick="addcontact()">Add Contact</button>
-    </form>
+        <h3 style="color: white;">Add Contact</h3>
 
-    <form id="sendForm" action="/addContact" method="post" enctype="multipart/form-data">
-        <input id="imageSel" type="file" name="image" id="image">
-        <input type="hidden" id="s1" name="data" />
-    </form>
-</div>
+        <form name="addForm" id="addForm" action="#" method="GET">
+            <input type="text" placeholder="Name" required name="name"><br>
+            <input type="date" required placeholder="Date of Birth" name="date"><br>
+            <input type="number" required maxlength="10" placeholder="Phone number" minlength="10" name="phone" />
+            <div id="phoneField"></div>
+            <button type="button" id="morePhoneField" onclick="addFields(1)">+</button>
+
+            <button type="button" id="lessPhoneField" onclick="removeFields(1)">-</button>
+            <br>
+            <input type="email" required placeholder="Email Address" name="email">
+            <div id="emailField"></div>
+            <br>
+            <button type="button" id="moreEmailField" onclick="addFields(2)">+</button>
+            <button type="button" id="lessEmailField" onclick="removeFields(2)">-</button>
+            <button type="button" id="update_button" onclick="addcontact()">Add Contact</button>
+        </form>
+
+        <form id="sendForm" onsubmit="validate()" action="/addContact" method="post" enctype="multipart/form-data">
+            <input id="imageSel" type="file" name="image" id="image">
+            <input type="hidden" id="s1" name="data" />
+        </form>
+    </div>
 </body>
 
 </html>
