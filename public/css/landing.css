@@ -50,9 +50,10 @@
     }
     #Picon{
         font-size:40px;
+        right:37%
     }
     #mainTitle{
-        right:8%;
+        right:10%;
         font-size:45px;
     }
 }
